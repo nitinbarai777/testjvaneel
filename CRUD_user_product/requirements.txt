@@ -5,6 +5,7 @@ Django==3.0
 django-classy-tags==2.0.0
 django-cms==3.7.4
 django-filer==2.0.2
+django-filter==2.4.0
 django-formtools==2.2
 django-js-asset==1.2.2
 django-mptt==0.11.0
@@ -29,6 +30,8 @@ djangocms-style==3.0.0
 djangocms-table==1.2
 djangocms-text-ckeditor==4.0.0
 djangocms-video==3.0.0
+djangorestframework==3.12.1
+djangorestframework-datatables==0.5.2
 easy-thumbnails==2.7
 html5lib==1.1
 lxml==4.6.1
