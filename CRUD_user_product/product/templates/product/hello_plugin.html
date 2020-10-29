@@ -1,0 +1,18 @@
+
+<table class="table" border="1px solid black" >
+    <thead class="thead-dark">
+
+        <th>First Name</th>
+        <th>Last Name</th>
+
+    </thead>
+ <tbody>
+    {% for cuser in users %}
+  <tr>
+
+        <td>{{ cuser.firstname }}</a></td>
+        <td>{{ cuser.lastname }}</a></td>
+
+    </tr>
+    {% endfor %}
+  </table>

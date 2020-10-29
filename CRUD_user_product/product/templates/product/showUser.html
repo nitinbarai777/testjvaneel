@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% load i18n static %}
+{% load cms_tags menu_tags sekizai_tags %}
+
+
+
+{% block content %}
+
+<br>
+<div id="replaceable-content" class="">
+
+<table class="table table-striped table-bordered table-sm" border="1px solid black" align="center">
+
+
+    <thead class="thead-dark">
+
+    <tr>
+<!--        <th>User ID</th>-->
+        {% if desc %}
+            {% if q %}
+                <th><a href="/showUser/?q={{q}}">First Name</a></th>
+            {% else %}
+                <th><a href="/showUser/?sort=firstname">First Name</a></th>
+            {% endif %}
+        {% else %}
+            {% if q %}
+                <th><a href="/showUser/?desc=true&q={{q}}">First Name</a></th>
+            {% else %}
+                <th><a href="/showUser/?desc=true&sort=firstname">First Name</a></th>
+            {% endif %}
+        {% endif %}
+
+
+        {% if desc %}
+            {% if q %}
+                <th><a href="/showUser/?q={{q}}">Last Name</a></th>
+            {% else %}
+                <th><a href="/showUser/?sort=lastname">Last Name</a></th>
+            {% endif %}
+        {% else %}
+            {% if q %}
+                <th><a href="/showUser/?desc=true&q={{q}}">Last Name</a></th>
+            {% else %}
+                <th><a href="/showUser/?desc=true&sort=lastname">Last Name</a></th>
+            {% endif %}
+        {% endif %}
+
+<!--        <th>Product Name</th>  -->
+        <th>Birth date</th>  
+        <th>Mobile</th>  
+        {% if desc %}
+            {% if q %}
+                <th><a href="/showUser/?q={{q}}">City</a></th>
+            {% else %}
+                <th><a href="/showUser/?sort=city">City</a></th>
+            {% endif %}
+        {% else %}
+            {% if q %}
+                <th><a href="/showUser/?desc=true&q={{q}}">City</a></th>
+            {% else %}
+                <th><a href="/showUser/?desc=true&sort=city">City</a></th>
+            {% endif %}
+        {% endif %}
+
+        {% if desc %}
+            {% if q %}
+                <th><a href="/showUser/?q={{q}}">Email</a></th>
+            {% else %}
+                <th><a href="/showUser/?sort=email">Email</a></th>
+            {% endif %}
+        {% else %}
+            {% if q %}
+                <th><a href="/showUser/?desc=true&q={{q}}">Email</a></th>
+            {% else %}
+                <th><a href="/showUser/?desc=true&sort=email">Email</a></th>
+            {% endif %}
+        {% endif %}
+
+        <th>Edit</th>
+        <th>Delete</th>
+         <th>Products</th>
+    </tr>  
+    </thead>
+    <tbody>
+    {% for user in users %}
+    <tr id="user-{{user.id}}">
+<!--        <td>{{ user.id }}</td>-->
+        <td><a href="/userProfile/{{ user.id }}">{{ user.firstname }}</a></td>
+        <td>{{ user.lastname }}</td>
+<!--        <td>{{ user.product_name }}</td>-->
+        <td>{{ user.birthdate }}</td>
+        <td>{{ user.mobile }}</td>
+        <td>{{ user.city }}</td>
+        <td>{{ user.email }}</td>
+        <td>
+
+<!--            <a href="/updateUser/{{ user.id }}"><span class="btn btn-danger form-control" >Edit</span></a>-->
+            <form action="/updateUser/{{ user.id }}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{ user.id }}">
+                <input type="submit" class="btn btn-danger form-control" value="edit">
+            </form>
+<!--            <a href="/deleteUser/{{ user.id }}">Delete</a>-->
+        </td>
+        <td>
+<!--            <form method="POST">-->
+<!--                {% csrf_token %}-->
+<!--                <input type="submit" onclick="deleteUser({{user.id}})" value="delete">-->
+<!--            </form>-->
+            <button class="btn btn-danger form-control" onclick="deleteUser({{user.id}})">DELETE</button>
+        </td>
+<!--        <td><a href="/showProduct/?user_id={{ user.id }}">Products</a></td>-->
+
+        <td>
+            <form action="/showProduct/?user_id={{ user.id }}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="id" value="{{user.id}}">
+                <input class="btn btn-danger form-control" type="submit" value="Products">
+            </form>
+        </td>
+
+    </tr>  
+    {% endfor %}
+    </tbody>
+
+</table>
+{% if users.has_other_pages %}
+  <ul class="pagination navbar navbar-light-bordered">
+    {% if users.has_previous %}
+      <li><a href="?page={{ users.previous_page_number }}&sort={{sorts}}{% if desc %}&desc=true&sort={{sorts}}{% endif %}{% if q %}&q={{q}}{% endif %}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in users.paginator.page_range %}
+      {% if users.number == i %}
+        <li class="active"><span>{{ i }}<span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}&sort={{sorts}}{% if desc %}&desc=true&sort={{sorts}}{% endif %}{% if q %}&q={{q}}{% endif %}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if users.has_next %}
+
+      <li><a href="?page={{ users.next_page_number }}&sort={{sorts}}{% if desc %}&desc=true&sort={{sorts}}{% endif %}{% if q %}&q={{q}}{% endif %}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+</div>
+<center><a href="{% url 'userreg' %}" class="btn btn-primary">Add New Record</a></center>
+
+
+{% endblock content %}
+

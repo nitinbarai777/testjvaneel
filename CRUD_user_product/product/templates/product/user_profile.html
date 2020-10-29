@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block content %}
+
+<table class="table table-striped table-bordered table-sm" border="1px solid black" align="center">
+    <tbody>
+
+    <tr>
+        <td>First Name</td>
+        <td>{{ user.firstname }}</td>
+
+    </tr>
+    <tr>
+        <td>Mobile</td>
+        <td>{{ user.mobile }}</td>
+
+    </tr>
+    <tr>
+        <td>birthdate</td>
+        <td>{{ user.birthdate }}</td>
+
+    </tr>
+    <tr>
+        <td>City</td>
+        <td>{{ user.city }}</td>
+
+    </tr>
+    <tr>
+        <td>Email</td>
+        <td>{{ user.email }}</td>
+
+    </tr>
+
+    </tbody>
+</table>
+<table align="center">
+<tr>
+    <td>
+    <form action="/showUser/" method="POST">
+        {% csrf_token %}
+
+        <input type="submit" value="Back">
+    </form>
+    </td>
+</tr>
+</table>
+
+{% endblock %}

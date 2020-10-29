@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block content %}
+<form method="POST" class="post-form" action="{% url 'updateUser' id=id %}">
+    {% csrf_token %}
+
+    <div class="container" >
+        <br>
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+            <h3>Update Details</h3>
+            </div>
+        </div>
+
+
+<!--        <div class="form-group row">-->
+<!--            <label class="col-sm-2 col-form-label">User Id:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="text" name="id" id="id_id" required maxlength="20" value="{{user.id}}"/>-->
+<!--            </div>-->
+<!--        </div>-->
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">First Name:</label>
+            <div class="col-sm-4">
+                {{users.firstname}}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Last Name:</label>
+            <div class="col-sm-4">
+                {{users.lastname}}
+            </div>
+        </div>
+
+<!--        <div class="form-group row">-->
+<!--            <label class="col-sm-2 col-form-label">Product Name:</label>-->
+<!--            <div class="col-sm-4">-->
+<!--                <input type="text" name="product_name" id="id_product_name" required maxlength="100" value="{{user.product_name}}" />-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Birth Date:</label>
+            <div class="col-sm-4">
+                {{users.birthdate}}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Mobile:</label>
+            <div class="col-sm-4">
+                {{ users.mobile }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">City:</label>
+            <div class="col-sm-4">
+                {{ users.city }}
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <label class="col-sm-2 col-form-label">Email:</label>
+            <div class="col-sm-4">
+                {{ users.email }}
+            </div>
+        </div>
+
+
+
+        <div class="form-group row">
+            <label class="col-sm-1 col-form-label"></label>
+            <div class="col-sm-4">
+                <button type="submit" class="btn btn-success">Update</button>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock %}

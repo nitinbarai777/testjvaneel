@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Records</title>
+     {% load static %}
+     <link rel="stylesheet" href="{% static 'css/style.css' %}"/>
+</head>
+<body>
+<h1 align="center"> Products of {{ id.firstname }}</h1>
+<br>
+<table class="table table-striped table-bordered table-sm" border="1px solid black" align="center">
+    <thead class="thead-dark">
+    <tr>
+        <th>Product Name</th>
+        <th>Product Type</th>
+<!--        <th>Actions</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in prod %}
+    <tr>
+<!--        <td>{{ p.user_id.firstname }}</td>-->
+        <td>{{ p.product_name }}</td>
+        <td>{{ p.product_type }}</td>
+<!--        <td>-->
+<!--&lt;!&ndash;            <a href="/editUser/{{ user.id }}"><span class="glyphicon glyphicon-pencil" >Edit</span></a>&ndash;&gt;-->
+<!--            <form action="/updateProduct/{{ p.id }}" method="POST">-->
+<!--                {% csrf_token %}-->
+<!--                <input type="hidden" name="id" value="{{ p.id }}">-->
+<!--                <input type="submit" value="edit">-->
+<!--            </form>-->
+<!--&lt;!&ndash;            <a href="/deleteUser/{{ user.id }}">Delete</a>&ndash;&gt;-->
+<!--        </td>-->
+<!--        <td>-->
+<!--            <form action="/deleteProduct/{{ p.id }}" method="POST">-->
+<!--                {% csrf_token %}-->
+<!--                <input type="hidden" name="id" value="{{p.id}}">-->
+<!--                <input type="submit" value="delete">-->
+<!--            </form>-->
+<!--        </td>-->
+
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<br>
+<br>
+<center><a href="{% url 'productreg' %}" class="btn btn-primary">Add New Record</a></center>
+</body>
+</html>

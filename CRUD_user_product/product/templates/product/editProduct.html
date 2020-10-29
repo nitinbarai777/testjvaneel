@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% load i18n static %}
+
+{% block content %}
+
+<form method="POST" class="post-form" action="{% url 'updateProduct' id=id %}">
+        {% csrf_token %}
+        <div class="container" align="center">
+            <br>
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                <h3>Update Details</h3>
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Product User :</label>
+                <div class="col-sm-4">
+                    {{ prod.user_id }}
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Product Name:</label>
+                <div class="col-sm-4">
+                    {{ prod.product_name }}
+                    {{ prod.errors }}
+
+
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label class="col-sm-2 col-form-label">Product Type:</label>
+                <div class="col-sm-4">
+                    {{ prod.product_type }}
+                </div>
+            </div>
+
+
+            <div class="form-group row">
+                <label class="col-sm-1 col-form-label"></label>
+                <div class="col-sm-4">
+                    <button type="submit" class="btn btn-success">Update</button>
+                </div>
+            </div>
+        </div>
+    </form>
+{% endblock %}
